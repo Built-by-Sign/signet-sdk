@@ -1,6 +1,6 @@
 # Signet Go-Kratos trace example
 
-[Project overview](../../README.md) · [Compose installation](../../docs/install-compose.md) · [SDK integration](../../docs/integrate-sdk.md)
+[Compose installation](https://github.com/Built-by-Sign/Signet/blob/main/docs/install-compose.md)
 
 This example contains two Kratos microservices. Both expose HTTP and gRPC and
 both use the Signet SDK from this repository through the `go.mod` replace rule.
@@ -12,34 +12,32 @@ both use the Signet SDK from this repository through the `go.mod` replace rule.
 
 ## Run
 
-Use Go 1.27.3 or newer and start the [Compose platform](../../docs/install-compose.md) first.
-This example is a separate Go module. In **each terminal**, start from the repository
-root and enter its directory:
+Use Go 1.27.3 or newer and start an OTLP receiver that accepts TLS and Bearer
+authentication. In **each terminal**, set `OTEL_EXPORTER_OTLP_CERTIFICATE` to
+the absolute path to the receiver's CA file and `SIGNET_OTLP_API_KEY` to the
+raw key. Then enter the example's Go module from the SDK repository root:
 
 ```bash
 cd examples/go-kratos
-export OTEL_EXPORTER_OTLP_CERTIFICATE="$(pwd)/../../compose/secrets/app/server-ca.crt"
-export SIGNET_OTLP_API_KEY="$(cat ../../compose/secrets/app/token)"
 ```
 
 Start B in the first terminal:
 
 ```bash
-OTEL_ENDPOINT=grpcs://localhost:4317 go run ./cmd/otel-worker
+OTEL_ENDPOINT="${OTEL_ENDPOINT:-grpcs://localhost:4317}" go run ./cmd/otel-worker
 ```
 
 Start A in the second terminal:
 
 ```bash
-OTEL_ENDPOINT=grpcs://localhost:4317 go run ./cmd/otel-validation
+OTEL_ENDPOINT="${OTEL_ENDPOINT:-grpcs://localhost:4317}" go run ./cmd/otel-validation
 ```
 
 By default, A calls B at `http://127.0.0.1:8090` and `127.0.0.1:9090`.
 Override `WORKER_HTTP_ENDPOINT` and `WORKER_GRPC_ENDPOINT` when B runs elsewhere.
 The default service names are `signet-go-validation` and `signet-go-worker`.
-Both send metrics and traces to OTLP; host-process stdout is not collected by the
-platform's Docker filelog receiver. Use the [SDK telemetry test stack](../../tests/README.md)
-for automated trace, metric, and log verification.
+Both send metrics and traces through OTLP. The platform's Docker filelog
+receiver collects application logs when the services run as containers.
 
 ## HTTP scenarios
 

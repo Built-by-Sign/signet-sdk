@@ -1,11 +1,11 @@
-module github.com/built-by-sign/signet/examples/standalone
+module github.com/built-by-sign/signet-sdk/examples/standalone
 
 go 1.27.3
 
-replace github.com/built-by-sign/signet => ../..
+replace github.com/built-by-sign/signet-sdk => ../..
 
 require (
-	github.com/built-by-sign/signet v0.0.1
+	github.com/built-by-sign/signet-sdk v0.0.0
 	github.com/samber/lo v1.53.0
 	go.uber.org/automaxprocs v1.6.0
 )

@@ -9,8 +9,8 @@ import (
 
 	"kratos-usage/internal/traceapp"
 
-	signet "github.com/built-by-sign/signet/sdk"
-	kratossignet "github.com/built-by-sign/signet/sdk/contrib/kratos"
+	signet "github.com/built-by-sign/signet-sdk"
+	kratossignet "github.com/built-by-sign/signet-sdk/contrib/kratos"
 	"github.com/go-kratos/kratos/v3"
 )
 

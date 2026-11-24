@@ -1,4 +1,4 @@
-module github.com/built-by-sign/signet
+module github.com/built-by-sign/signet-sdk
 
 go 1.26.0
 

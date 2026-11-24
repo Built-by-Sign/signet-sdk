@@ -17,8 +17,8 @@ package kratos
 
 import (
 	"context"
-	signet "github.com/built-by-sign/signet/sdk"
-	"github.com/built-by-sign/signet/sdk/health"
+	signet "github.com/built-by-sign/signet-sdk"
+	"github.com/built-by-sign/signet-sdk/health"
 
 	otelmetrics "github.com/go-kratos/kratos/contrib/otel/v3/metrics"
 	oteltracing "github.com/go-kratos/kratos/contrib/otel/v3/tracing"

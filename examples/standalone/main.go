@@ -12,8 +12,8 @@ import (
 	"syscall"
 	"time"
 
-	signet "github.com/built-by-sign/signet/sdk"
-	signethttp "github.com/built-by-sign/signet/sdk/contrib/nethttp"
+	signet "github.com/built-by-sign/signet-sdk"
+	signethttp "github.com/built-by-sign/signet-sdk/contrib/nethttp"
 
 	"github.com/samber/lo"
 

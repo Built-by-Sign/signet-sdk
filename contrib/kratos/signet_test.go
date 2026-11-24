@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	signet "github.com/built-by-sign/signet/sdk"
+	signet "github.com/built-by-sign/signet-sdk"
 	"go.opentelemetry.io/otel"
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/metric/metricdata"

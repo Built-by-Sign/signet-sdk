@@ -4,7 +4,7 @@
 //
 // Quick start with a local plaintext OTLP receiver (no framework):
 // The default Compose receiver requires TLS and Bearer credentials instead;
-// see docs/integrate-sdk.md for that configuration.
+// see the Signet deployment repository for that configuration.
 //
 //	obs, err := signet.Init(signet.Config{
 //	    ServiceName: "my-service", Environment: "development",
@@ -25,7 +25,7 @@
 //   - Enabled providers are installed globally for otel.Meter() / otel.Tracer()
 //   - Disabled signals leave the corresponding global provider unchanged
 //
-// With Kratos framework (import "github.com/built-by-sign/signet/sdk/contrib/kratos"):
+// With Kratos framework (import "github.com/built-by-sign/signet-sdk/contrib/kratos"):
 //
 //	kratosObs, err := kratossignet.Setup(cfg)
 //	if err != nil {
@@ -43,9 +43,6 @@
 //   - Invalid configuration returns an error instead of silently disabling signals
 //   - On error, Init has already cleaned up any providers initialized so far
 //   - Push mode has no Prometheus "up" metric; use service_heartbeat_unix_seconds for liveness
-//
-// Full integration guide: see docs/integrate-sdk.md.
-// Runnable examples: examples/standalone and examples/go-kratos.
 package signet
 
 import (
@@ -57,12 +54,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/built-by-sign/signet/sdk/health"
-	siglogging "github.com/built-by-sign/signet/sdk/logging"
-	sigmetrics "github.com/built-by-sign/signet/sdk/metrics"
-	"github.com/built-by-sign/signet/sdk/otlp"
-	sigruntime "github.com/built-by-sign/signet/sdk/runtime"
-	sigtracing "github.com/built-by-sign/signet/sdk/tracing"
+	"github.com/built-by-sign/signet-sdk/health"
+	siglogging "github.com/built-by-sign/signet-sdk/logging"
+	sigmetrics "github.com/built-by-sign/signet-sdk/metrics"
+	"github.com/built-by-sign/signet-sdk/otlp"
+	sigruntime "github.com/built-by-sign/signet-sdk/runtime"
+	sigtracing "github.com/built-by-sign/signet-sdk/tracing"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
