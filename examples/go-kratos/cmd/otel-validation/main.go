@@ -11,8 +11,8 @@ import (
 	v1 "kratos-usage/api/trace/v1"
 	"kratos-usage/internal/traceapp"
 
-	signet "github.com/built-by-sign/signet/sdk"
-	kratossignet "github.com/built-by-sign/signet/sdk/contrib/kratos"
+	signet "github.com/built-by-sign/signet-sdk"
+	kratossignet "github.com/built-by-sign/signet-sdk/contrib/kratos"
 	"github.com/go-kratos/kratos/v3"
 	kgrpc "github.com/go-kratos/kratos/v3/transport/grpc"
 	khttp "github.com/go-kratos/kratos/v3/transport/http"

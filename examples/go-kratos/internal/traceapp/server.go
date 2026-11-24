@@ -3,7 +3,7 @@ package traceapp
 import (
 	v1 "kratos-usage/api/trace/v1"
 
-	kratossignet "github.com/built-by-sign/signet/sdk/contrib/kratos"
+	kratossignet "github.com/built-by-sign/signet-sdk/contrib/kratos"
 	"github.com/go-kratos/kratos/v3/middleware"
 	"github.com/go-kratos/kratos/v3/middleware/recovery"
 	kgrpc "github.com/go-kratos/kratos/v3/transport/grpc"

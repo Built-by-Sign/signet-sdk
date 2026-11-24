@@ -8,8 +8,8 @@ import (
 
 	v1 "kratos-usage/api/trace/v1"
 
-	signet "github.com/built-by-sign/signet/sdk"
-	kratossignet "github.com/built-by-sign/signet/sdk/contrib/kratos"
+	signet "github.com/built-by-sign/signet-sdk"
+	kratossignet "github.com/built-by-sign/signet-sdk/contrib/kratos"
 	otelmetrics "github.com/go-kratos/kratos/contrib/otel/v3/metrics"
 	"github.com/go-kratos/kratos/v3/errors"
 	kgrpc "github.com/go-kratos/kratos/v3/transport/grpc"

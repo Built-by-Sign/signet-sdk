@@ -4,12 +4,11 @@ FROM golang:1.27.3-alpine AS builder
 
 WORKDIR /src/signet
 COPY go.mod go.sum ./
-COPY sdk ./sdk
 
 WORKDIR /src/signet/examples/standalone
 COPY examples/standalone/go.mod examples/standalone/go.sum ./
 RUN --mount=type=cache,target=/go/pkg/mod go mod download
-COPY examples/standalone ./
+COPY . /src/signet
 
 ARG VERSION=dev
 RUN --mount=type=cache,target=/go/pkg/mod \

@@ -2,10 +2,10 @@ module kratos-usage
 
 go 1.27.3
 
-replace github.com/built-by-sign/signet => ../..
+replace github.com/built-by-sign/signet-sdk => ../..
 
 require (
-	github.com/built-by-sign/signet v0.0.2-0.20260813095742-58336d9b4764
+	github.com/built-by-sign/signet-sdk v0.0.0
 	github.com/go-kratos/kratos/contrib/otel/v3 v3.0.0-20261021071621-3f6b3b6c412f
 	github.com/go-kratos/kratos/v3 v3.0.0
 	github.com/google/wire v0.7.0

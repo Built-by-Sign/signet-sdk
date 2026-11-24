@@ -6,7 +6,7 @@ import (
 
 	v1 "kratos-usage/api/helloworld/v1"
 
-	"github.com/built-by-sign/signet/sdk/observable"
+	"github.com/built-by-sign/signet-sdk/observable"
 
 	"github.com/go-kratos/kratos/v3/errors"
 	"go.opentelemetry.io/otel"

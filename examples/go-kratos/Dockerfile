@@ -5,11 +5,10 @@ FROM golang:1.27.3 AS builder
 ARG SERVICE=otel-validation
 WORKDIR /src/signet
 COPY go.mod go.sum ./
-COPY sdk ./sdk
 WORKDIR /src/signet/examples/go-kratos
 COPY examples/go-kratos/go.mod examples/go-kratos/go.sum ./
 RUN --mount=type=cache,target=/go/pkg/mod go mod download
-COPY examples/go-kratos ./
+COPY . /src/signet
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/service ./cmd/${SERVICE}

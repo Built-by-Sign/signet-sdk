@@ -5,7 +5,7 @@ import (
 	"kratos-usage/internal/conf"
 	"kratos-usage/internal/service"
 
-	kratossignet "github.com/built-by-sign/signet/sdk/contrib/kratos"
+	kratossignet "github.com/built-by-sign/signet-sdk/contrib/kratos"
 
 	"log/slog"
 
