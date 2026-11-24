@@ -22,31 +22,8 @@ The default service name is `standalone-demo`, and the instance ID is the hostna
 Without `LISTEN`, the example binds to `:8000`; the command above uses port 18080
 to avoid an existing service on 8000. Change the port if needed.
 
-Metrics and traces are sent to the Agent. JSON logs go to stdout; the platform's
-Docker filelog receiver does not collect host-process stdout automatically.
-
-## Run in Docker for log collection
-
-From the SDK repository root, with the Signet Compose platform running and the
-same CA path and key exported:
-
-```bash
-docker build -f examples/standalone/Dockerfile -t signet-standalone:local .
-docker run -d --rm --name signet-standalone-demo \
-  --network signet_default \
-  --log-driver json-file --log-opt max-size=10m --log-opt max-file=3 \
-  -e OTEL_ENDPOINT=grpcs://otel-node-agent:4317 \
-  -e OTEL_EXPORTER_OTLP_CERTIFICATE=/run/secrets/server-ca.crt \
-  -e SIGNET_OTLP_API_KEY \
-  -v "${OTEL_EXPORTER_OTLP_CERTIFICATE}:/run/secrets/server-ca.crt:ro" \
-  -e OTEL_ENVIRONMENT=compose \
-  -p 127.0.0.1:18080:8000 \
-  signet-standalone:local
-```
-
-Choose either host or Docker execution, or use different host ports. The Docker
-command joins the existing platform network and lets Agent collect JSON stdout.
-It does not add the example to the platform Compose file.
+Metrics and traces are sent to the configured OTLP receiver. JSON logs go to
+stdout.
 
 ## Generate traffic and verify
 
@@ -68,17 +45,11 @@ logs `example failure`. `/work` caps its delay at 2 seconds, so it cannot by its
 exercise the default 3-second slow-trace retention rule.
 
 Wait 30–60 seconds, then follow [platform verification](https://github.com/Built-by-Sign/Signet/blob/main/docs/install-compose.md#verification).
-Select namespace=`compose` and service=`standalone-demo` in Grafana. Check heartbeat
-and request metrics, error traces, and, for Docker execution, correlated logs.
+Select namespace=`compose` and service=`standalone-demo` in Grafana. Check
+heartbeat and request metrics, error traces, and the trace IDs in local logs.
 Ordinary traces are retained at 1%; error traces are the reliable verification case.
 
-Stop a host process with Ctrl+C. Stop the container with:
-
-```bash
-docker stop signet-standalone-demo
-```
-
-The container is removed automatically and platform data remains.
+Stop the example with Ctrl+C.
 
 These examples always use TLS + Bearer authentication. Set `SIGNET_OTLP_API_KEY`
 to the raw API key and `OTEL_EXPORTER_OTLP_CERTIFICATE` to a CA file path.
