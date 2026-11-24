@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package trace.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "kratos-usage/api/trace/v1;v1";
+
+enum Outcome {
+  OUTCOME_UNSPECIFIED = 0;
+  OUTCOME_OK = 1;
+  OUTCOME_ERROR = 2;
+}
+
+message RunChainRequest {
+  Outcome a = 1;
+  Outcome b = 2;
+}
+
+message RunLocalRequest {
+  Outcome a = 1;
+}
+
+message ExecuteRequest {
+  Outcome outcome = 1;
+}
+
+message TraceReply {
+  string trace_id = 1;
+  Outcome a = 2;
+  Outcome b = 3;
+}
+
+message ExecuteReply {
+  Outcome outcome = 1;
+}
+
+service Validation {
+  rpc RunChain(RunChainRequest) returns (TraceReply) {
+    option (google.api.http) = {
+      post: "/v1/trace/chain"
+      body: "*"
+    };
+  }
+
+  rpc RunLocal(RunLocalRequest) returns (TraceReply) {
+    option (google.api.http) = {
+      post: "/v1/trace/local"
+      body: "*"
+    };
+  }
+}
+
+service Worker {
+  rpc Execute(ExecuteRequest) returns (ExecuteReply) {
+    option (google.api.http) = {
+      post: "/internal/v1/execute"
+      body: "*"
+    };
+  }
+}
