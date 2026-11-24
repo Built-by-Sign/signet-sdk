@@ -9,7 +9,7 @@ import (
 
 	"google.golang.org/grpc/credentials"
 
-	"github.com/built-by-sign/signet/sdk/otlp"
+	"github.com/built-by-sign/signet-sdk/otlp"
 
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
